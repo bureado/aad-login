@@ -14,12 +14,17 @@ This utility doesn't provision the user. In other words, you need to ensure the 
 you'll be logging in with is visible by NSS. A simple `sudo useradd -m <user>` might
 be enough for a handful of users.
 
+An exception of this would be the `aad-login-self-provisioning` script which attempts
+to create the user upon a failed `getent`. This is experimental. Ideally you are doing
+this to delegate management of your Linux VMs and therefore will be using groups (like
+`sudo`) to delegate requiring you to provision the user beforehand.
+
 ## Installing
 
 You can download the tarfile and:
 
-    sudo tar xzf aad-login_0.1.tar.gz -C /
-    cd /opt/aad-login
+    sudo tar xzf aad-login_0.1.tar.gz -C / \\
+    cd /opt/aad-login \\
     sudo npm install
 
 ## Configuring
@@ -30,6 +35,15 @@ and client ID in.
 Then, open `/etc/pam.d/common-auth` and add:
 
     auth sufficient pam_exec.so expose_authtok /usr/local/bin/aad-login
+
+ideally at the beginning of your ruleset. Other rules might need to use `try_firstpass` for
+convenience.
+
+## Caveats
+
+A freshly created user will have a temporary password that has to be changed via the portal. A
+convenient way to get this done is to visit portal.azure.com (even if you don't have an Azure
+account) with those credentials and change them before attempting to SSH.
 
 ## Warning
 
