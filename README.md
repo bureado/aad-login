@@ -23,8 +23,8 @@ this to delegate management of your Linux VMs and therefore will be using groups
 
 You can download the tarfile and:
 
-    sudo tar xzf aad-login_0.1.tar.gz -C / \\
-    cd /opt/aad-login \\
+    sudo tar xzf aad-login_0.1.tar.gz -C /
+    cd /opt/aad-login
     sudo npm install
 
 ## Configuring
@@ -44,6 +44,9 @@ convenience.
 A freshly created user will have a temporary password that has to be changed via the portal. A
 convenient way to get this done is to visit portal.azure.com (even if you don't have an Azure
 account) with those credentials and change them before attempting to SSH.
+
+The self-provisioning beta doesn't guarantee UID consistency across VMs, nor delegates access
+to groups like sudo. Therefore, an important TODO is to detect group membership.
 
 ## Warning
 
