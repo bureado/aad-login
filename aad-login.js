@@ -1,3 +1,10 @@
+/*
+  aad-login.js
+  Requests a token from Azure AD using username/password
+
+  Available under the Apache 2.0 License
+/*
+
 // Configuration parameters
 var directory = '';
 var clientid  = '';
@@ -26,16 +33,14 @@ if (username && password) {
   var context = new AuthenticationContext(authorityUrl);
 
   context.acquireTokenWithUsernamePassword(resource, request.username, request.password, request.clientId, function(err, tokenResponse) {
-    if (err) { // fail
-        console.log(tokenResponse);
-        process.exit(1);
+    console.log(tokenResponse);
+    if (err) { // auth failed, not sure of err value so forcing 1/0 here
+      process.exit(1);
     } else {
-        console.log(tokenResponse);
-        process.exit(0);
+      process.exit(0);
     }
   });
 } else {
   console.log('No username/password provided');
   process.exit(1);
 }
-
