@@ -18,7 +18,7 @@ be enough for a handful of users.
 
 You can download the tarfile and:
 
-    sudo tar xzf aad-login_0.1.tar.gz
+    sudo tar xzf aad-login_0.1.tar.gz -C /
     cd /opt/aad-login
     sudo npm install
 
@@ -31,7 +31,7 @@ Then, open `/etc/pam.d/common-auth` and add:
 
     auth sufficient pam_exec.so expose_authtok /usr/local/bin/aad-login
 
+## Warning
 
-
-
-
+Tested in Ubuntu 14.04. Any changes to common-auth might result in unexpected behaviour in
+authentication including multiple password prompts and inability to join with local credentials.
