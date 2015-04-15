@@ -1,0 +1,9 @@
+{
+    "name": "aad-login"
+  , "version": "0.0.1"
+  , "private": true
+  , "dependencies": {
+      "adal-node": ">= 0.1.3"
+  }
+}
+

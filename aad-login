@@ -1,0 +1,13 @@
+#!/bin/sh
+
+#
+# aad-login - calls aad-login.js to authenticate to Azure AD
+#   Available under the Apache 2 License
+#
+
+# Early in /etc/pam.d/common-auth, add:
+#   auth sufficient pam_exec.so expose_authtok /usr/local/bin/aad-login
+
+read password
+node /opt/aad-login/aad-login.js $PAM_USER $password
+return $?
