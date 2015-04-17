@@ -10,4 +10,4 @@
 
 read password
 node /opt/aad-login/aad-login.js $PAM_USER $password
-return $?
+exit $?
