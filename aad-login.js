@@ -3,7 +3,7 @@
   Requests a token from Azure AD using username/password
 
   Available under the Apache 2.0 License
-/*
+*/
 
 // Configuration parameters
 var directory = '';

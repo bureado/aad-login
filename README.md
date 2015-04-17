@@ -24,8 +24,8 @@ this to delegate management of your Linux VMs and therefore will be using groups
 
 You can download the tarfile and:
 
-    sudo tar xzf aad-login_0.1.tar.gz -C / \\
-    cd /opt/aad-login \\
+    sudo tar xzf aad-login_0.1.tar.gz -C /
+    cd /opt/aad-login
     sudo npm install
 
 ## Configuring
@@ -52,6 +52,9 @@ account) with those credentials and change them before attempting to SSH.
 In CentOS 7.x (and other SELinux-enabled distros) you need to disable the policy:
 
     sudo setenforce 0
+
+The self-provisioning beta doesn't guarantee UID consistency across VMs, nor delegates access
+to groups like sudo. Therefore, an important TODO is to detect group membership.
 
 ## Warning
 
