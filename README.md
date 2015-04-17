@@ -7,6 +7,7 @@ Allows Linux user authentication to Azure AD via pam_exec
 * An Azure AD directory has been created, and some users exist
 * Node.js and npm are installed in the Linux VM
 * A directory application has been created (native client type) and you have the Client ID
+* Your PAM distribution has pam_exec.so
 
 ## User provisioning
 
@@ -39,11 +40,18 @@ Then, open `/etc/pam.d/common-auth` and add:
 ideally at the beginning of your ruleset. Other rules might need to use `try_firstpass` for
 convenience.
 
+CentOS doesn't have `common-auth` so you need to include this rule in the relevant PAM file,
+such as `/etc/pam.d/sshd` or `/etc/pam.d/system-auth`.
+
 ## Caveats
 
 A freshly created user will have a temporary password that has to be changed via the portal. A
 convenient way to get this done is to visit portal.azure.com (even if you don't have an Azure
 account) with those credentials and change them before attempting to SSH.
+
+In CentOS 7.x (and other SELinux-enabled distros) you need to disable the policy:
+
+    sudo setenforce 0
 
 ## Warning
 
