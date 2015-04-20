@@ -56,7 +56,9 @@ In CentOS 7.x (and other SELinux-enabled distros) you need to disable the policy
 The self-provisioning beta doesn't guarantee UID consistency across VMs, nor delegates access
 to groups like sudo. Therefore, an important TODO is to detect group membership.
 
-## Warning
+## Warnings
+
+This is sample code and comes with no warranties.
 
 Tested in Ubuntu 14.04. Any changes to common-auth might result in unexpected behaviour in
 authentication including multiple password prompts and inability to join with local credentials.
