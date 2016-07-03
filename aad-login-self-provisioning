@@ -14,10 +14,10 @@ then
   node /opt/aad-login/aad-login.js $PAM_USER $password
   if [ "$?" -ne "0" ]
   then
-    return 1
+    exit 1
   else
     getent passwd $PAM_USER || \
     useradd -m $PAM_USER
-    return 0
+    exit 0
   fi
 fi
