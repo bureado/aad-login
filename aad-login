@@ -8,6 +8,9 @@
 # Early in /etc/pam.d/common-auth, add:
 #   auth sufficient pam_exec.so expose_authtok /usr/local/bin/aad-login
 
-read password
-node /opt/aad-login/aad-login.js $PAM_USER $password
+read aadpw
+export aaduser=$PAM_USER
+export aadpw
+
+node /opt/aad-login/aad-login.js
 exit $?
