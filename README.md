@@ -1,6 +1,14 @@
 # aad-login
 
-Allows Linux user authentication to Azure AD via pam_exec
+## IMPORTANT
+
+**With [Azure Active Directory authentication for Linux](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/login-using-aad) in preview, this project has been deprecated. Please also note that this project, `aad-login`, and the package used by the feature mentioned above, `aadlogin` are not related in any way (well, they both use PAM)**
+
+**The code was a hacky POC to begin with, and never implemented handling MFA, but it's here as a reference for anyone trying to do PAM with custom scripts, as I'd much rather prefer people to use PAM than to try to write and maintain authentication logic elsewhere.**
+
+## Description
+
+Allows Linux user authentication to Azure AD via pam_exec for overly simplistic, non-production use cases
 
 ## Prerequisites
 
@@ -22,10 +30,8 @@ this to delegate management of your Linux VMs and therefore will be using groups
 
 ## Installing
 
-You can download the tarfile and:
-
-    sudo tar xzf aad-login_0.1.tar.gz -C /
-    cd /opt/aad-login
+    git clone https://github.com/bureado/aad-login
+    cd aad-login/
     sudo npm install
 
 ## Configuring
@@ -43,7 +49,11 @@ convenience.
 CentOS doesn't have `common-auth` so you need to include this rule in the relevant PAM file,
 such as `/etc/pam.d/sshd` or `/etc/pam.d/system-auth`.
 
-## Caveats
+## Caveats and known issues
+
+MFA is not supported.
+
+You might need to adjust the `nodejs` path on the scripts depending on what you have on your system.
 
 A freshly created user will have a temporary password that has to be changed via the portal. A
 convenient way to get this done is to visit portal.azure.com (even if you don't have an Azure
